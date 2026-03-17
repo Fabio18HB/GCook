@@ -1,0 +1,26 @@
+-- criar o projeto MVC--
+-- No terminal diigite:
+
+dotnet new mvc -o GCook
+
+-- Acessar a pasta do projeto --
+cd GCook
+
+-- Executar o projeto --
+dotnet watch run 
+
+-- Para parar o projeto --
+Ctrl + c
+
+-- Instalar os pacotes necessarios --
+dotnet add package Microsoft.EntityFrameworkCore --version 9.0.13
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 9.0.13
+dotnet add package Microsoft.EntityFrameworkCoreTools --version 9.0.13
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 9.0.13
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 9.0.13
+
+-- Criar a camada de dados --
+
+--Config Git--
+git config --global user.name Fabio18HB
+git config --global user.email fabheriq@gmail.com

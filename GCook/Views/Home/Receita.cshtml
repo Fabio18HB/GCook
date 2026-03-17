@@ -1,0 +1,69 @@
+@model Receita
+@{
+    ViewData["Title"] = "Receita";
+    ViewData["MainClass"] = "receita-detail-container";
+}
+
+<!-- navegação interna -->
+<div class="breadcrumb">
+    <a asp-action="Index"><i class="fas fa-home"></i> Início</a>
+    <i class="fas fa-chevron-right"></i>
+    <a href="#">Receitas</a>
+    <i class="fas fa-chevron-right"></i>
+    <span style="color: #a48d78;">@Model.Nome</span>
+</div>
+
+<!-- cabeçalho com foto e descrição -->
+<div class="recipe-header">
+    <div class="recipe-header-img" title="foto: @Model.Nome" style="background-image: url('@Model.Foto');"></div>
+    <div class="recipe-header-info">
+        <h1>@Model.Nome
+            <div class="recipe-description">@Model.Descricao</div>
+
+            <div class="recipe-stats">
+                <div class="stat-item"><i class="fas fa-utensil-spoon"></i> @Model.Dificuldade</div>
+                <div class="stat-item"><i class="far fa-clock"></i> @Model.TempoPreparo</div>
+                <div class="stat-item"><i class="fas fa-users"></i> @Model.Rendimento</div>
+            </div>
+            <div class="badge-detail"><i class="@Model.Categoria.Icone"></i> @Model.Categoria.Nome</div>
+        </div>
+    </div>
+
+    <!-- duas colunas: ingredientes + modo de preparo -->
+    <div class="recipe-two-columns">
+        <!-- ingredientes -->
+        <aside class="ingredients-card">
+            <h2><i class="fas fa-basket-shopping"></i> Ingredientes</h2>
+            <ul class="ingredient-list">
+                @foreach (ReceitaIngrediente ri in Model.Ingredientes)
+                {
+                <li><span>@ri.Quantidade</span> @ri.Ingrediente.Nome</li>
+   
+                }
+    
+            </ul>
+            <p style="margin-top: 1.5rem; color: #6b5b4b; font-size: 0.95rem;"><i class="fas fa-info-circle"></i>
+                ingredientes selecionados da horta e despensa</p>
+            </aside>
+
+    <!-- modo de preparo -->
+    <section class="preparation-card">
+        <h2><i class="fas fa-list-ol"></i> Modo de preparo</h2>
+        <ul class="step-list">
+            @foreach (Preparo preparo in Model.Preparo)
+            {
+                <li>@preparo.Texto</li>
+            }    
+            </ul>
+            <div class="tip-box">
+                <i class="fas fa-lightbulb"></i> <strong>dica da chef:</strong> para um ragu ainda mais encorpado, adicione
+                1 colher de extrato de tomate junto com o vinho. Se preferir, substitua o parmesão por levedura nutricional
+                na polenta.
+            </div>
+        </section>
+    </div>
+
+    <!-- link de volta para a página inicial (simulado) -->
+    <div class="back-link">
+        <a href="#"><i class="fas fa-arrow-left"></i> ver mais receitas</a>
+    </div>

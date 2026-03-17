@@ -1,0 +1,56 @@
+﻿@model List<Receita>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Categorias de receitas -->
+<div class="page-header">
+    <h1><strong>Receitas</strong> com alma caseira</h1>
+    <div class="category-tags">
+        @foreach (Categoria categoria in ViewBag.Categorias)
+        {
+            <span class="category-tag"><i class="fas fa-pepper-hot"></i> @categoria.Nome</span>
+        }
+    </div>
+</div>
+
+<div class="featured-recipe">
+    <div class="featured-text">
+        <h3><i class="fas fa-fire" style="color: var(--tomate);"></i> receita em destaque</h3>
+        <p>Ragu de cogumelos com polenta cremosa · por chef Ana</p>
+    </div>
+    <div class="featured-btn">ver receita</div>
+</div>
+
+<!-- Grade de receitas 1: mais populares -->
+<div class="section-title">
+    <i class="fas fa-hotdog"></i>
+    <span>Receitas da estação</span>
+</div>
+
+<div class="recipe-grid">
+
+      @foreach (Receita receita in Model)
+    {
+        <a asp-action="Receita" asp-route-id="@receita.Id" style="text-decoration: none;">
+        <!-- Card 1 -->
+            <div class="recipe-card">
+                <div class="card-img"
+                    style="background-image: url('@receita.Foto');">
+                    <span class="difficulty-badge"><i class="far fa-clock"></i>@receita.TempoPreparo</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="recipe-name">@receita.Nome</h3>
+                    <div class="recipe-meta">
+                        <span class="difficulty-indicator"><i class="fas fa-thermometer-half"></i>@receita.Dificuldade</span>
+                        <span class="ingredients-count"><i class="fas fa-carrot"></i>@receita.Ingredientes</span>
+                    </div>
+                    <div class="card-footer">
+                        <span><i class="far fa-heart"></i>234</span>
+                        <span><i class="far fa-comment"></i> 12</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+</div>
